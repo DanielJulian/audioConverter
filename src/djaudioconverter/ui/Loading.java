@@ -1,37 +1,34 @@
 package djaudioconverter.ui;
 
+import djaudioconverter.converter.ConvertionProgressListener;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 public class Loading implements Runnable {
 
+    private ConvertionProgressListener progressListener;
     private Label label;
-    private String dots = "";
-    private volatile boolean running = true;
+    private double progress = 0;
 
-    public Loading(Label label) {
+    public Loading(Label label, ConvertionProgressListener progressListener) {
         this.label = label;
+        this.progressListener = progressListener;
     }
 
     @Override
     public void run() {
-        while (running) {
-            if (dots.length() < 3) {
-                dots = dots + ".";
-            }
-
-            Platform.runLater(() -> label.setText("Procesando" + dots));
-
+        while (progress != 100) {
+            progress = progressListener.getProgress();
+            Platform.runLater(() -> label.setText("Progreso: %" + progress));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        Platform.runLater(() -> label.setText("Conversión completa!"));
+
     }
 
-
-    public void stop() {
-        running = false;
-    }
 }

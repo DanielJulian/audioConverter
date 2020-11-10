@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6cfe2d2-afd8-4499-9976-95312f285094" name="Default Changelist" comment="" />
+    <list default="true" id="f6cfe2d2-afd8-4499-9976-95312f285094" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/djaudioconverter/converter/ConvertionProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/converter/MP3Converter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/converter/MP3Converter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/Loading.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/Loading.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/MainScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/MainScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/djaudioconverter/converter/MP3Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/converter/MP3Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/djaudioconverter/ui/Loading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/ui/Loading.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/djaudioconverter/ui/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/ui/MainScreen.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,12 +26,24 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Danny\IdeaProjects\AudioToMp3\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1k18onKZ8fe3yFFzY3b6bM5jldv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jar/jave-all-deps-3.0.1.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -28,6 +51,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="djaudioconverter.converter" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Danny\IdeaProjects\AudioToMp3\jar" />
     </key>
@@ -90,5 +116,18 @@
       <updated>1604856914073</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

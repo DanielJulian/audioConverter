@@ -1,7 +1,9 @@
 package djaudioconverter.ui;
 
+import djaudioconverter.converter.ConvertionProgressListener;
 import djaudioconverter.converter.MP3Converter;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,27 +14,27 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class MainScreen extends Application {
 
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
+    private Label selectedFileLabel;
+    private Label statusLabel;
 
     public void start() {
         launch();
     }
 
     public void start(Stage primaryStage) {
-        Label selectedFileLabel = new Label();
-        Label statusLabel = new Label();
-        statusLabel.setTranslateX(120.0D);
-        statusLabel.setTranslateY(40.0D);
+        selectedFileLabel = new Label();
+        statusLabel = new Label();
+
+        statusLabel.setTranslateX(120);
+        statusLabel.setTranslateY(40);
         Button btnOpenDirectoryChooser = new Button();
-        btnOpenDirectoryChooser.setTranslateX(120.0D);
-        btnOpenDirectoryChooser.setTranslateY(10.0D);
+        btnOpenDirectoryChooser.setTranslateX(120);
+        btnOpenDirectoryChooser.setTranslateY(10);
         btnOpenDirectoryChooser.setText("Seleccionar el archivo a convertir");
+
         btnOpenDirectoryChooser.setOnAction(event -> {
             try {
                 FileChooser fileChooser = new FileChooser();
@@ -44,20 +46,12 @@ public class MainScreen extends Application {
                 }
 
                 selectedFileLabel.setText("Archivo " + selectedFile.getAbsolutePath());
+                ConvertionProgressListener progressListener = new ConvertionProgressListener();
+                MP3Converter converter = new MP3Converter(selectedFile, progressListener);
+                startTask(converter);
 
-                Loading loading = new Loading(statusLabel);
-                new Thread(loading).start();
-
-                MP3Converter converter = new MP3Converter(selectedFile);
-                Future<Boolean> convertionTask = executorService.submit(converter);
-                boolean successfulConversion = convertionTask.get();
-                loading.stop();
-
-                if (successfulConversion) {
-                    statusLabel.setText("Procesamiento finalizado!");
-                } else {
-                    statusLabel.setText("Ocurrió un error!");
-                }
+                Loading loading = new Loading(statusLabel, progressListener);
+                startTask(loading);
 
             } catch (Exception var14) {
                 var14.printStackTrace();
@@ -74,6 +68,17 @@ public class MainScreen extends Application {
         primaryStage.setTitle("Conversor a MP3 de Gladys");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+
+    private Thread startTask(Runnable task) {
+        // Run the task in a background thread
+        Thread backgroundThread = new Thread(task);
+        // Terminate the running thread if the application exits
+        backgroundThread.setDaemon(true);
+        // Start the thread
+        backgroundThread.start();
+        return backgroundThread;
     }
 
 }

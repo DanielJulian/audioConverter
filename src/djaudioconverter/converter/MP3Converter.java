@@ -7,18 +7,15 @@ import ws.schild.jave.encode.EncodingAttributes;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.concurrent.Callable;
 
-public class MP3Converter implements Callable<Boolean> {
+public class MP3Converter implements Runnable {
 
     private File fileToConvert;
+    private ConvertionProgressListener progressListener;
 
-    public MP3Converter(File file) {
+    public MP3Converter(File file, ConvertionProgressListener progressListener) {
         this.fileToConvert = file;
-    }
-
-    public Boolean call() {
-        return convertToMP3();
+        this.progressListener = progressListener;
     }
 
     private boolean convertToMP3() {
@@ -40,7 +37,7 @@ public class MP3Converter implements Callable<Boolean> {
 
             //Encode
             Encoder encoder = new Encoder();
-            encoder.encode(new MultimediaObject(source), target, attrs);
+            encoder.encode(new MultimediaObject(source), target, attrs, progressListener);
             success = true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -48,5 +45,11 @@ public class MP3Converter implements Callable<Boolean> {
 
         return success;
     }
+
+    @Override
+    public void run() {
+        convertToMP3();
+    }
+
 
 }
