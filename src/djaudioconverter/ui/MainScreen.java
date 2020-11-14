@@ -17,7 +17,6 @@ import java.io.File;
 
 public class MainScreen extends Application {
 
-    private Label selectedFileLabel;
     private Label statusLabel;
 
     public void start() {
@@ -25,27 +24,48 @@ public class MainScreen extends Application {
     }
 
     public void start(Stage primaryStage) {
-        selectedFileLabel = new Label();
         statusLabel = new Label();
 
         statusLabel.setTranslateX(120);
         statusLabel.setTranslateY(40);
-        Button btnOpenDirectoryChooser = new Button();
-        btnOpenDirectoryChooser.setTranslateX(120);
-        btnOpenDirectoryChooser.setTranslateY(10);
-        btnOpenDirectoryChooser.setText("Seleccionar el archivo a convertir");
+        Button directoryButton = new Button();
+        configureDirectoryButton(directoryButton, primaryStage);
 
-        btnOpenDirectoryChooser.setOnAction(event -> {
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(directoryButton, statusLabel);
+        StackPane root = new StackPane();
+        root.getChildren().add(vBox);
+        Scene scene = new Scene(root, 430.0D, 100.0D);
+        primaryStage.setTitle("Conversor a MP3");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+
+    private void startTask(Runnable task) {
+        // Run the task in a background thread
+        Thread backgroundThread = new Thread(task);
+        // Terminate the running thread if the application exits
+        backgroundThread.setDaemon(true);
+        // Start the thread
+        backgroundThread.start();
+    }
+
+    private void configureDirectoryButton(Button directoryButton, Stage primaryStage) {
+        directoryButton.setTranslateX(120);
+        directoryButton.setTranslateY(10);
+        directoryButton.setText("Seleccioná el archivo a convertir");
+
+        directoryButton.setOnAction(event -> {
             try {
                 FileChooser fileChooser = new FileChooser();
                 File selectedFile = fileChooser.showOpenDialog(primaryStage);
 
                 if (selectedFile == null) {
-                    selectedFileLabel.setText("No se selecciono ningun archivo");
+                    statusLabel.setText("No se selecciono ningun archivo");
                     return;
                 }
 
-                selectedFileLabel.setText("Archivo " + selectedFile.getAbsolutePath());
                 ConvertionProgressListener progressListener = new ConvertionProgressListener();
                 MP3Converter converter = new MP3Converter(selectedFile, progressListener);
                 startTask(converter);
@@ -57,28 +77,7 @@ public class MainScreen extends Application {
                 var14.printStackTrace();
                 statusLabel.setText("Ocurrió un error!");
             }
-
         });
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(new Node[]{selectedFileLabel, btnOpenDirectoryChooser, statusLabel});
-        StackPane root = new StackPane();
-        root.getChildren().add(vBox);
-        Scene scene = new Scene(root, 430.0D, 100.0D);
-        primaryStage.setTitle("Conversor a MP3 de Gladys");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-
-    private Thread startTask(Runnable task) {
-        // Run the task in a background thread
-        Thread backgroundThread = new Thread(task);
-        // Terminate the running thread if the application exits
-        backgroundThread.setDaemon(true);
-        // Start the thread
-        backgroundThread.start();
-        return backgroundThread;
     }
 
 }
