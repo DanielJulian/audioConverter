@@ -14,7 +14,7 @@ public class ConvertionProgressListener implements EncoderProgressListener {
     }
 
     public void progress(int p) {
-        progress = p / 10.00;
+        progress = p / 1000.00;
     }
 
     public void sourceInfo(MultimediaInfo m) {

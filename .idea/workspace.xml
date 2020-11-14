@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6cfe2d2-afd8-4499-9976-95312f285094" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/converter/ConvertionProgressListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/converter/ConvertionProgressListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/Loading.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/Loading.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/MainScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AudioToMp3/djaudioconverter/ui/MainScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/djaudioconverter/converter/ConvertionProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/converter/ConvertionProgressListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/djaudioconverter/ui/Loading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/ui/Loading.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/djaudioconverter/ui/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/djaudioconverter/ui/MainScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

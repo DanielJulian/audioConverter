@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -18,6 +19,7 @@ import java.io.File;
 public class MainScreen extends Application {
 
     private Label statusLabel;
+    private ProgressBar progressBar;
 
     public void start() {
         launch();
@@ -25,14 +27,18 @@ public class MainScreen extends Application {
 
     public void start(Stage primaryStage) {
         statusLabel = new Label();
-
-        statusLabel.setTranslateX(120);
+        statusLabel.setTranslateX(160);
         statusLabel.setTranslateY(40);
+
         Button directoryButton = new Button();
         configureDirectoryButton(directoryButton, primaryStage);
 
+        progressBar = new ProgressBar();
+        configureProgressBar();
+
+
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(directoryButton, statusLabel);
+        vBox.getChildren().addAll(directoryButton, statusLabel, progressBar);
         StackPane root = new StackPane();
         root.getChildren().add(vBox);
         Scene scene = new Scene(root, 430.0D, 100.0D);
@@ -70,7 +76,7 @@ public class MainScreen extends Application {
                 MP3Converter converter = new MP3Converter(selectedFile, progressListener);
                 startTask(converter);
 
-                Loading loading = new Loading(statusLabel, progressListener);
+                Loading loading = new Loading(progressBar, statusLabel, progressListener);
                 startTask(loading);
 
             } catch (Exception var14) {
@@ -78,6 +84,14 @@ public class MainScreen extends Application {
                 statusLabel.setText("Ocurrió un error!");
             }
         });
+    }
+
+
+    private void configureProgressBar() {
+        progressBar.setProgress(0);
+        progressBar.setTranslateX(160);
+        progressBar.setTranslateY(0);
+        progressBar.setVisible(false);
     }
 
 }
