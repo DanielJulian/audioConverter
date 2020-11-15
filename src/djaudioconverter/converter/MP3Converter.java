@@ -12,10 +12,12 @@ public class MP3Converter implements Runnable {
 
     private File fileToConvert;
     private ConvertionProgressListener progressListener;
+    private double quality;
 
-    public MP3Converter(File file, ConvertionProgressListener progressListener) {
+    public MP3Converter(File file, ConvertionProgressListener progressListener, double quality) {
         this.fileToConvert = file;
         this.progressListener = progressListener;
+        this.quality = quality;
     }
 
     private boolean convertToMP3() {
@@ -27,7 +29,7 @@ public class MP3Converter implements Runnable {
             //Audio Attributes
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec("libmp3lame");
-            audio.setBitRate(128000);
+            audio.setBitRate((int) quality * 1000);
             audio.setChannels(2);
             audio.setSamplingRate(44100);
 
